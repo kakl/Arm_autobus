@@ -20,33 +20,36 @@ char c = ' ';
 int potpin = 2;  // analog pin used to connect the potentiometer
 int val;    // variable to read the value from the analog pin
 
+int nahorudolu = 150;
+int dopredudozadu = 60;
+int otevritzavrit = 120;
+int zavora = 52;
+int otaceni = 164;
 
 void setup() 
 { 
   Serial.begin(9600);
   
   myservo1.attach(2); //servo celisti
-  myservo1.write(120);
+  myservo1.write(otevritzavrit);
   delay(1000);  
 
   myservo4.attach(5); //servo nahoru 
-  myservo4.write(140);
+  myservo4.write(nahorudolu);
   delay(1000);  
 
   myservo2.attach(3); //servo dopredu
-  myservo2.write(60);
+  myservo2.write(dopredudozadu);
   delay(1000);  
 
   myservo3.attach(4); //servo otaceni
-  myservo3.write(163);
+  myservo3.write(otaceni);
   delay(1000);  
 
   myservo5.attach(6); //servo zavora rameno 
-  myservo5.write(52);
+  myservo5.write(zavora);
   delay(1000); 
 
-  vpred(60, 88, 10, 0);
-  delay(1000);  
 
 } 
 
@@ -70,267 +73,189 @@ void setup()
 void loop() 
 { 
   //test();
+  vpred(80, 10, 0);
+  delay(1000);  
 
-  dolu(140, 55, 10, 0);
+  dolu(70, 10, 0);
   delay(1000); 
 
-zavora_nahoru(52, 164, 5, 0);
+  vpred(90, 10, 0);
+  delay(1000);  
 
-  zavrit(120, 70, 40, 0);
+  dolu(63, 10, 0);
   delay(1000); 
 
-zavora_dolu(52, 164, 5, 0);
+zavora_nahoru(164, 5, 0);
+ 
+  zavrit(70, 40, 0);
+  delay(1000); 
+
+zavora_dolu(52, 5, 1);
 delay(1000); 
 
-  nahoru(55, 140, 10, 0);
+  nahoru(150, 10, 0);
   delay(1000);  
 
 
-  vpravo(163, 132, 20, 0);
+  vpravo(130, 20, 0);
   delay(1000); 
 
-    vpred(88, 110, 20, 0);
+    vpred(110, 20, 0);
     delay(1000);  
 
-  otevrit(70, 120, 40, 0);
+  otevrit(120, 40, 1);
   delay(1000); 
   
-    vzad(110, 50, 5, 0);
+    vzad(50, 5, 0);
     delay(2000); 
 
-  vlevo(132, 163, 20, 0);
+  vlevo(164, 20, 0);
   delay(1000);       
 
-    vpred(50, 88, 20, 0);
-    delay(1000);  
+    //vpred(85, 20, 0);
+    //delay(1000);  
 
-delay(2000);
-
-return;
-      myservo1.attach(2);//servo celisti
-      myservo1.write(120);
-
-      myservo2.attach(3);//servo prvni rameno
-      myservo2.write(80);
-      delay(1000);
-      myservo4.attach(5);//servo druhe rameno
-      myservo4.write(149);
-      
-      //vlevo(133, 168, 20, 1);//vlevo(136, 167, 20, 1)
-      //delay(400);
-      
-      //myservo3.detach();
-      //myservo2.detach();
-
-
-      zavora_nahoru(52, 164, 5, 1);
-      //myservo2.attach(3);//servo prvni rameno
-      //myservo2.write(80);
-      //delay(1000);
-      //myservo4.attach(5);//servo druhe rameno
-      //myservo4.write(149);
-      
-      //vlevo(133, 168, 20, 1);//vlevo(136, 167, 20, 1)
-      //delay(400);
-      
-      //myservo3.detach();
-      //myservo2.detach();
-
-      nahoru(77, DORAZ-40, 40, 1);
-      delay(400);
-      dolu(77, 140, 40, 0);
-
-delay(2000);
-      
-return;      
-      //otevrit(63, 120, 20, 1);
-      
-      dolu(77, 140, 25, 0);
-      //dolu(77, 125, 20, 0);
-      //!!!vpred(120, 123, 4, 0);
-      vpred(60, DORAZ, 30, 0);
-      
-      //myservo2.write(125);
-      //zavrit(71, 120, 40, 0);
-      zavrit(71, DORAZ, 40, 0);
-      
-      //vzad(80, 100, 10, 0);
-      
-      nahoru(77, DORAZ, 10, 1);
-      vpravo(133, 168, 20, 1);
-      vpred(80, 140, 20, 0);
-      zavora_dolu(52, 164, 5, 1);
-      otevrit(70, 120, 20, 1);
-      vzad(80, 138, 20, 0);
-      dolu(149, 168, 20, 1);
-      delay(1000);
-      //vpred(122, 168, 20, 0);
-      //dolu(77, 168, 20, 0);//27
-      /*
-      myservo2.attach(3);//servo prvni rameno
-      //myservo2.write(130);//130
-      vpred(122, 168, 20, 0);
-      delay(400);
-      
-      zavrit(71, 120, 40, 0);
-      delay(400);
-      myservo2.detach();
-      
-      vzad(75, 130, 20, 0);
-      
-      delay(400);
-      vpravo(136, 167, 20, 0);
-      nahoru(14, 118, 20, 0);//27 100
-      vpred(122, 138, 20, 0);
-      delay(400);
-      zavora_dolu(52, 164, 5, 1);
-      
-      otevrit(70, 120, 20, 1);
-      myservo2.detach();
-      myservo4.detach();
-      myservo1.detach();
-      
-      myservo3.detach();
-      vzad(68, 130, 20, 0);
-      myservo2.detach();
-     //pocatecni pozice natoceni 132
-     //konecna pozice natoceni 97 kdy pusti kulicku
-     
-     //pocatek druhe rameno 27 (32)
-      */
-    
-    
-    
+  delay(2000);
    
 } 
 
 
-int vpred(int angle_low, int angle_high, int time, int stav){//Servo2 min 180 max 68
+int vpred(int angle_high, int time, int stav){//Servo2 min 180 max 68
 
   myservo2.attach(3);
-  for(pos = angle_low; pos <= angle_high; pos += 1) // goes from 0 degrees to 180 degrees 
+  for(pos = dopredudozadu; pos <= angle_high; pos += 1) // goes from 0 degrees to 180 degrees 
   {                                  // in steps of 1 degree 
     myservo2.write(pos);              // tell servo to go to position in variable 'pos' 
     delay(time);                      
   }
+  dopredudozadu = pos;
   if(stav==1)
     myservo2.detach();
 
 }
 
-int vzad(int angle_high, int angle_low, int time, int stav){//Servo2 min 180 max 68
+int vzad(int angle_low, int time, int stav){//Servo2 min 180 max 68
 
   myservo2.attach(3);
-  for(pos = angle_high; pos>=angle_low; pos-=1) // goes from 0 degrees to 180 degrees 
+  for(pos = dopredudozadu; pos>=angle_low; pos-=1) // goes from 0 degrees to 180 degrees 
   {                                  // in steps of 1 degree 
     myservo2.write(pos);              // tell servo to go to position in variable 'pos' 
     delay(time);                      
   }
+  dopredudozadu = pos;
   if(stav==1)
     myservo2.detach();
 
 }
 
-int dolu(int angle_high, int angle_low, int time, int stav){//Servo4 min 14 max 132
+int dolu(int angle_low, int time, int stav){//Servo4 min 14 max 132
 
-  //myservo4.attach(5);
-  for(pos = angle_high; pos>=angle_low; pos-=1) // goes from 0 degrees to 180 degrees 
+  myservo4.attach(5);
+  for(pos = nahorudolu; pos>=angle_low; pos-=1) // goes from 0 degrees to 180 degrees 
   {                                  // in steps of 1 degree 
     myservo4.write(pos);              // tell servo to go to position in variable 'pos' 
     delay(time);                      
   }
+  nahorudolu = pos;
   if(stav==1)
     myservo4.detach();
 
 }
 
-int nahoru(int angle_low, int angle_high, int time, int stav){//Servo4 min 14 max 132
+int nahoru(int angle_high, int time, int stav){//Servo4 min 14 max 132
 
-  //myservo4.attach(5);
-  for(pos = angle_low; pos<=angle_high; pos+=1) // goes from 0 degrees to 180 degrees 
+  myservo4.attach(5);
+  for(pos = nahorudolu; pos<=angle_high; pos+=1) // goes from 0 degrees to 180 degrees 
   {                                  // in steps of 1 degree 
     myservo4.write(pos);              // tell servo to go to position in variable 'pos' 
     delay(time);                      
   }
+  nahorudolu = pos;
   if(stav==1)
     myservo4.detach();
 
 }
 
-int vlevo(int angle_low, int angle_high, int time, int stav){//Servo3 min 0 max 180
+int vlevo(int angle_high, int time, int stav){//Servo3 min 0 max 180
 
-  //myservo3.attach(4);
-  for(pos = angle_low; pos<=angle_high; pos+=1) // goes from 0 degrees to 180 degrees 
+  myservo3.attach(4);
+  for(pos = otaceni; pos<=angle_high; pos+=1) // goes from 0 degrees to 180 degrees 
   {                                  // in steps of 1 degree 
     myservo3.write(pos);              // tell servo to go to position in variable 'pos' 
     delay(time);                      
   }
+  otaceni = pos;
   if(stav==1)
     myservo3.detach();
 
 }
 
-int vpravo(int angle_high, int angle_low, int time, int stav){//Servo3 min 0 max 180
+int vpravo(int angle_low, int time, int stav){//Servo3 min 0 max 180
 
-  //myservo3.attach(4);
-  for(pos = angle_high; pos>=angle_low; pos-=1) // goes from 0 degrees to 180 degrees 
+  myservo3.attach(4);
+  for(pos = otaceni; pos>=angle_low; pos-=1) // goes from 0 degrees to 180 degrees 
   {                                  // in steps of 1 degree 
     myservo3.write(pos);              // tell servo to go to position in variable 'pos' 
     delay(time);                      
   }
+  otaceni = pos;
   if(stav==1)
     myservo3.detach();
 
 }
 
 
-int otevrit(int angle_low, int angle_high, int time, int stav){//Servo1 min 63 max 120
+int otevrit(int angle_high, int time, int stav){//Servo1 min 63 max 120
 
-  //myservo1.attach(2);
-  for(pos = angle_low; pos<=angle_high; pos+=1) // goes from 0 degrees to 180 degrees 
+  myservo1.attach(2);
+  for(pos = otevritzavrit; pos<=angle_high; pos+=1) // goes from 0 degrees to 180 degrees 
   {                                  // in steps of 1 degree 
     myservo1.write(pos);              // tell servo to go to position in variable 'pos' 
     delay(time);                      
   }
+  otevritzavrit = pos;
   if(stav==1)
     myservo1.detach();
 
 }
 
-int zavrit(int angle_high, int angle_low, int time, int stav){//Servo1 min 63 max 120
+int zavrit(int angle_low, int time, int stav){//Servo1 min 63 max 120
 
-  //myservo1.attach(2);
-  for(pos = angle_high; pos>=angle_low; pos-=1) // goes from 0 degrees to 180 degrees 
+  myservo1.attach(2);
+  for(pos = otevritzavrit; pos>=angle_low; pos-=1) // goes from 0 degrees to 180 degrees 
   {                                  // in steps of 1 degree 
     myservo1.write(pos);              // tell servo to go to position in variable 'pos' 
     delay(time);                      
   }
+  otevritzavrit = pos;
   if(stav==1)
     myservo1.detach();
 
 }
 
-int zavora_nahoru(int angle_low, int angle_high, int time, int stav){//Servo1 min 63 max 120
+int zavora_nahoru(int angle_high, int time, int stav){//Servo1 min 63 max 120
 
-  //myservo5.attach(6);
-  for(pos = angle_low; pos<=angle_high; pos+=1) // goes from 0 degrees to 180 degrees 
+  myservo5.attach(6);
+  for(pos = zavora; pos<=angle_high; pos+=1) // goes from 0 degrees to 180 degrees 
   {                                  // in steps of 1 degree 
     myservo5.write(pos);              // tell servo to go to position in variable 'pos' 
     delay(time);                      
   }
+  zavora = pos;
   if(stav==1)
     myservo5.detach();
 
 }
 
-int zavora_dolu(int angle_low, int angle_high, int time, int stav){//Servo1 min 63 max 120
+int zavora_dolu(int angle_low, int time, int stav){//Servo1 min 63 max 120
 
-  //myservo5.attach(6);
-  for(pos = angle_high; pos>=angle_low; pos-=1) // goes from 0 degrees to 180 degrees 
+  myservo5.attach(6);
+  for(pos = zavora; pos>=angle_low; pos-=1) // goes from 0 degrees to 180 degrees 
   {                                  // in steps of 1 degree 
     myservo5.write(pos);              // tell servo to go to position in variable 'pos' 
     delay(time);                      
   }
+  zavora = pos;
   if(stav==1)
     myservo5.detach();
 
